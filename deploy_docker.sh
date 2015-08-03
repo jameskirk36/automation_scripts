@@ -1,2 +1,2 @@
 echo "Deploying docker containers..."
-bundle ruby sshwrapper.rb "cd $1; docker-compose up -d"
+bundle exec ruby sshwrapper.rb "cd $1; docker-compose up -d"
