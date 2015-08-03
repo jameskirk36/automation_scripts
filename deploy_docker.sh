@@ -4,7 +4,7 @@ command="
   cd $1;\
   git reset --hard;\
   git pull;\
-  sed -i \"s_nice/mimir_&:$revision_\" docker-compose.yml;\
+  sed -i \"s_nice/mimir_&:$revision _\" docker-compose.yml;\
   docker-compose pull;\
   docker-compose up -d;\
 "
