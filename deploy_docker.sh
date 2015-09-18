@@ -1,11 +1,11 @@
 echo "Deploying docker containers..."
-revision=$GO_REVISION_LD_MIMIR
-command="
-  cd $1;\
-  git reset --hard;\
-  git pull;\
-  sed -i \"s_nice/mimir_&:$revision _\" docker-compose.yml;\
-  docker-compose pull;\
-  docker-compose up -d;\
-"
-bundle exec ruby sshwrapper.rb "$command"
+
+REVISION=$GO_REVISION_LD_KB_QS
+REPO_URL=$2
+TARGET_DIR=$1
+
+bundle exec ruby sshwrapper.rb "cd $TARGET_DIR"
+bundle exec ruby sshwrapper.rb "cd $TARGET_DIR; git clone $REPO_URL ."
+bundle exec ruby sshwrapper.rb "cd $TARGET_DIR; git reset --hard $REVISION"
+bundle exec ruby sshwrapper.rb "cd $TARGET_DIR; docker-compose pull"
+bundle exec ruby sshwrapper.rb "cd $TARGET_DIR; docker-compose up -d"
