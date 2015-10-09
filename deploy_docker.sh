@@ -1,6 +1,6 @@
 echo "Deploying docker containers..."
 
-REVISION=$GO_REVISION_LD_KB_QS
+REVISION=$GO_PIPELINE_LABEL
 TARGET_DIR=$1
 
 bundle exec ruby sshwrapper.rb "cd $TARGET_DIR" || exit $?
